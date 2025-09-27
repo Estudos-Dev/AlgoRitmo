@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.UUID;
-
+//http://localhost:8080/swagger-ui/index.html#/
 @Tag(name = "Gerenciamento de usuários",
         description = "API para gerenciar usuários")
 @RequestMapping(value = ("/api/user"))
@@ -25,7 +25,7 @@ public interface UserManagementPort {
                     @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
             })
     @GetMapping(
-            value = "{id}",
+            value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<UserResponse> getUserById(@PathVariable UUID id);
 

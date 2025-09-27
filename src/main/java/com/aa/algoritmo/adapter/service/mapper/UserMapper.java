@@ -5,7 +5,7 @@ import com.aa.algoritmo.adapter.out.persistence.entity.UserEntity;
 import com.aa.algoritmo.domain.model.user.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserEntity toEntity(User user);
     User toModel(UserEntity userEntity);

@@ -5,7 +5,6 @@ import com.aa.algoritmo.adapter.out.persistence.repository.UserRepository;
 import com.aa.algoritmo.ports.out.persistence.UserPersistencePort;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Component
