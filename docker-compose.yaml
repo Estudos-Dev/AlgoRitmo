@@ -2,10 +2,17 @@ version: "3.9"
 
 services:
   postgres:
-    image: 'postgres:latest'
+    image: postgres:18
+    container_name: algoritmo_local
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_DB: algoritmo
+      POSTGRES_USER: ToninhoEArthur
+      POSTGRES_PASSWORD: ASenha
     ports:
-      - '5432'
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
