@@ -9,11 +9,10 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface VendedorMapper {
-    @Mapping(target = "id", ignore = true)
-    @Mapping(source = "nome", target = "nome")
-    @Mapping(source = "email", target = "email")
-    @Mapping(target = "criadoEm", ignore = true)
+
     VendedorEntity requestToEntity(VendedorRequest vendedorRequest);
+
     Vendedor toModel(VendedorEntity userEntity);
+
     VendedorResponse toResponse(Vendedor vendedor);
 }
