@@ -6,9 +6,11 @@ import com.aa.algoritmo.adapter.out.persistence.repository.ProductRepository;
 import com.aa.algoritmo.adapter.service.mapper.ProductMapper;
 import com.aa.algoritmo.ports.out.persistence.ProductPersistencePort;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ProductPersistenceAdapter implements ProductPersistencePort {
     private ProductMapper productMapper = Mappers.getMapper(ProductMapper.class);
     private final ProductRepository productRepository;
@@ -26,6 +28,7 @@ public class ProductPersistenceAdapter implements ProductPersistencePort {
     @Override
     public ProductEntity createProduct(ProductRequest productRequest) {
         ProductEntity entity = productMapper.requestToEntity(productRequest);
+        System.out.println("createProduct" + productRequest + entity);
         return productRepository.save(entity);
     }
 
@@ -33,6 +36,8 @@ public class ProductPersistenceAdapter implements ProductPersistencePort {
     public ProductEntity  updateProduct(Integer id, ProductRequest productRequest) {
         ProductEntity entity = productRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        // Atualiza a entidade existente usando @MappingTarget
+        productMapper.updateEntityFromRequest(productRequest, entity);
         return productRepository.save(entity);
     }
 

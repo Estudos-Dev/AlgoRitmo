@@ -27,6 +27,7 @@ public class ProductApiController implements ProductManagementPort {
 
     @Override
     public ResponseEntity<ProductResponse> createProduct(ProductRequest productRequest) {
+
         return ResponseEntity.ok(productMapper.toResponse(productUseCase.createProduct(productRequest)));
     }
 

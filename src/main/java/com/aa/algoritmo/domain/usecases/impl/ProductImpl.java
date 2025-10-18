@@ -26,6 +26,7 @@ public class ProductImpl implements ProductUseCase {
 
     @Override
     public Product createProduct(ProductRequest productRequest) {
+        System.out.println("createProduct" + productRequest);
         return productMapper.toModel(productPersistencePort.createProduct(productRequest));
     }
 
