@@ -7,23 +7,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
-@Table(name = "vendedor")
+@Table(name = "seller")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class VendedorEntity {
+public class SellerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
 
-    private String nome;
+    private String name;
 
     private String email;
 
-    @Column(name = "criado_em")
-    private LocalDateTime criadoEm = LocalDateTime.now();
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
