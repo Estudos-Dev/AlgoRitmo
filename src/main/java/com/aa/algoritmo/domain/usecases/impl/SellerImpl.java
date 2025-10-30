@@ -1,0 +1,34 @@
+package com.aa.algoritmo.domain.usecases.impl;
+
+import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
+import com.aa.algoritmo.adapter.service.mapper.SellerMapper;
+import com.aa.algoritmo.domain.model.vendedor.Seller;
+import com.aa.algoritmo.domain.usecases.SellerUseCase;
+import com.aa.algoritmo.ports.out.persistence.SellerPersistencePort;
+import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SellerImpl implements SellerUseCase {
+    private final SellerMapper sellerMapper = Mappers.getMapper(SellerMapper.class);
+    private final SellerPersistencePort sellerPersistencePort;
+
+    public SellerImpl(SellerPersistencePort sellerPersistencePort) {
+        this.sellerPersistencePort = sellerPersistencePort;
+    }
+
+    @Override
+    public Seller createUser(SellerRequest sellerRequest) {
+        return sellerMapper.toModel(sellerPersistencePort.createUser(sellerRequest));
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+       sellerPersistencePort.deleteUserById(id);
+    }
+
+    @Override
+    public Seller getById(int id) {
+        return sellerMapper.toModel(sellerPersistencePort.findById(id));
+    }
+}

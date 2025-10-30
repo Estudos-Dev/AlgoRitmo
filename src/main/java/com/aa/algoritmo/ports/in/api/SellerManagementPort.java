@@ -1,7 +1,7 @@
 package com.aa.algoritmo.ports.in.api;
 
-import com.aa.algoritmo.adapter.in.model.request.VendedorRequest;
-import com.aa.algoritmo.adapter.in.model.response.VendedorResponse;
+import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
+import com.aa.algoritmo.adapter.in.model.response.SellerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -10,26 +10,36 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 
 //http://localhost:8080/swagger-ui/index.html#/
-@Tag(name = "Gerenciamento de Vendedor",
+@Tag(name = "Gerenciamento de Seller",
         description = "API para gerenciar vendedores")
 @RequestMapping(value = ("/api/user"))
-public interface VendedorManagementPort {
+public interface SellerManagementPort {
 
     @Operation(summary = "Cadastro de vendedor")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "201", description = "Vendedor cadastrado com sucesso"),
+                    @ApiResponse(responseCode = "201", description = "Seller cadastrado com sucesso"),
                     @ApiResponse(responseCode = "500", description = "Erro ao cadastrar vendedor")
             })
     @PostMapping(
             value = "/create",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<VendedorResponse> createUser(@RequestBody VendedorRequest vendedorRequest);
+    ResponseEntity<SellerResponse> createUser(@RequestBody SellerRequest sellerRequest);
+
+    @Operation(summary = "Cadastro de vendedor")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "201", description = "Vendedor excluído com sucesso"),
+                    @ApiResponse(responseCode = "500", description = "Erro ao excluir vendedor")
+            })
+    @PostMapping(
+            value = "/delete",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    void deleteUserById(@RequestBody int id);
 
     @Operation(summary = "Busca por id")
     @ApiResponses(
@@ -40,6 +50,5 @@ public interface VendedorManagementPort {
     @GetMapping(
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<VendedorResponse> getUserById(@PathVariable UUID id);
-
+    ResponseEntity<SellerResponse> getUserById(@PathVariable int id);
 }
