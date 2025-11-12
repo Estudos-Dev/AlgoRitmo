@@ -14,12 +14,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ClientMapper {
 
-//    @Mapping(target = "id", ignore = true)
-//    @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
     ClientEntity requestToEntity(ClientRequest clientRequest);
 
-//    @Mapping(target = "id", ignore = true)
-//    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     void updateEntityFromRequest(ClientRequest clientRequest, @MappingTarget ClientEntity entity);
 
     Client toModel(ClientEntity clientEntity);
@@ -30,3 +30,4 @@ public interface ClientMapper {
 
     List<ClientResponse> toResponseList(List<Client> clientList);
 }
+
