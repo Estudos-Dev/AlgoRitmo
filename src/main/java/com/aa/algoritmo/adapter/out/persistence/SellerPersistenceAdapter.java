@@ -8,6 +8,8 @@ import com.aa.algoritmo.ports.out.persistence.SellerPersistencePort;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class SellerPersistenceAdapter implements SellerPersistencePort {
     private SellerMapper sellerMapper = Mappers.getMapper(SellerMapper.class);
@@ -16,6 +18,10 @@ public class SellerPersistenceAdapter implements SellerPersistencePort {
     public SellerPersistenceAdapter(SellerRepository sellerRepository, SellerMapper sellerMapper) {
         this.sellerRepository = sellerRepository;
         this.sellerMapper = sellerMapper;
+    }
+
+    public List<SellerEntity> findAllSellers() {
+        return sellerRepository.findAll();
     }
 
     @Override

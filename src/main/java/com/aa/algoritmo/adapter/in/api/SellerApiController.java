@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class SellerApiController implements SellerManagementPort {
     private final SellerMapper sellerMapper = Mappers.getMapper(SellerMapper.class);
@@ -22,6 +24,10 @@ public class SellerApiController implements SellerManagementPort {
     @Override
     public ResponseEntity<SellerResponse> createUser(SellerRequest sellerRequest) {
         return ResponseEntity.ok(sellerMapper.toResponse(sellerUseCase.createUser(sellerRequest)));
+    }
+
+    public ResponseEntity<List<SellerResponse>> findAllSellers() {
+        return ResponseEntity.ok(sellerMapper.toResponseList(sellerUseCase.findAllSellers()));
     }
 
     @Override
@@ -38,7 +44,7 @@ public class SellerApiController implements SellerManagementPort {
     @Override
     public ResponseEntity<SellerResponse> getUserById(int id) {
         try{
-            return ResponseEntity.ok(sellerMapper.toResponse(sellerUseCase.getById(id)));
+            return ResponseEntity.ok(sellerMapper.toResponse(sellerUseCase.findById(id)));
         }catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

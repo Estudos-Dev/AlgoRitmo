@@ -8,6 +8,8 @@ import com.aa.algoritmo.ports.out.persistence.SellerPersistencePort;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SellerImpl implements SellerUseCase {
     private final SellerMapper sellerMapper = Mappers.getMapper(SellerMapper.class);
@@ -15,6 +17,11 @@ public class SellerImpl implements SellerUseCase {
 
     public SellerImpl(SellerPersistencePort sellerPersistencePort) {
         this.sellerPersistencePort = sellerPersistencePort;
+    }
+
+    @Override
+    public List<Seller> findAllSellers() {
+        return sellerMapper.toModelList(sellerPersistencePort.findAllSellers());
     }
 
     @Override
@@ -28,7 +35,7 @@ public class SellerImpl implements SellerUseCase {
     }
 
     @Override
-    public Seller getById(int id) {
+    public Seller findById(int id) {
         return sellerMapper.toModel(sellerPersistencePort.findById(id));
     }
 }

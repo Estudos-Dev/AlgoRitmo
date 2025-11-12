@@ -10,12 +10,27 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 //http://localhost:8080/swagger-ui/index.html#/
 @Tag(name = "Gerenciamento de Seller",
         description = "API para gerenciar vendedores")
-@RequestMapping(value = ("/api/user"))
+@RequestMapping(value = ("/api/sellers"))
 public interface SellerManagementPort {
+
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Vendedores encontrados"),
+                    @ApiResponse(responseCode = "404", description = "Nenhum vendedor encontrado")
+            }
+    )
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    ResponseEntity<List<SellerResponse>> findAllSellers(
+
+    );
 
     @Operation(summary = "Cadastro de vendedor")
     @ApiResponses(

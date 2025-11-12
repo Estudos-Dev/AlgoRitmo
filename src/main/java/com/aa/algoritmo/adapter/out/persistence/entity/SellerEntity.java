@@ -9,14 +9,14 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "seller")
+@Table(name = "sellers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class SellerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -24,5 +24,5 @@ public class SellerEntity {
     private String email;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 }
