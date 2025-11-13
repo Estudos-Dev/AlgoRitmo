@@ -10,4 +10,5 @@ public interface ProductPersistencePort {
     ProductEntity createProduct(ProductRequest productRequest);
     ProductEntity updateProduct(Integer id, ProductRequest productRequest);
     void deleteProduct(Integer id);
+    ProductEntity findById(Integer id);
 }

@@ -46,4 +46,10 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
 
         clientRepository.delete(entity);
     }
+
+    @Override
+    public ClientEntity findById(Integer integer) {
+        return clientRepository.findById(integer)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com id " + integer));
+    }
 }
