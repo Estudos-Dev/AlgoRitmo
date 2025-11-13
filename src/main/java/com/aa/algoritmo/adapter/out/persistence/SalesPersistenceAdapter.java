@@ -20,23 +20,23 @@ public class SalesPersistenceAdapter implements SalesPersistencePort {
     }
 
     @Override
-    public List<SalesEntity> findAllProducts() {
+    public List<SalesEntity> findAllSales() {
         return salesRepository.findAll();
     }
 
     @Override
-    public SalesEntity createSales(SalesEntity salesEntity) {
+    public SalesEntity createSale(SalesEntity salesEntity) {
         return salesRepository.save(salesEntity);
     }
 
     @Override
-    public SalesEntity updateProduct(Integer id, SalesRequest salesRequest) {
+    public SalesEntity updateSale(Integer id, SalesRequest salesRequest) {
         return salesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Venda não encontrada com id: " + id));
     }
 
     @Override
-    public void deleteProduct(Integer id) {
+    public void deleteSale(Integer id) {
         SalesEntity entity = salesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Venda não encontrada com id: " + id));
         salesRepository.delete(entity);

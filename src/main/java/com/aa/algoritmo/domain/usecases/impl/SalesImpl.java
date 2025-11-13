@@ -31,7 +31,7 @@ public class SalesImpl implements SalesUseCase {
 
     @Override
     public List<Sales> findAllSales() {
-        return salesMapper.toModelList(salesPersistencePort.findAllProducts());
+        return salesMapper.toModelList(salesPersistencePort.findAllSales());
     }
 
     @Override
@@ -57,18 +57,18 @@ public class SalesImpl implements SalesUseCase {
 
         sale.setItems(items);
 
-        SalesEntity saved = salesPersistencePort.createSales(sale);
+        SalesEntity saved = salesPersistencePort.createSale(sale);
 
         return salesMapper.toModel(saved);
     }
 
     @Override
     public Sales updateSales(Integer id, SalesRequest salesRequest) {
-        return salesMapper.toModel(salesPersistencePort.updateProduct(id, salesRequest));
+        return salesMapper.toModel(salesPersistencePort.updateSale(id, salesRequest));
     }
 
     @Override
     public void deleteSalest(Integer id) {
-        salesPersistencePort.deleteProduct(id);
+        salesPersistencePort.deleteSale(id);
     }
 }
