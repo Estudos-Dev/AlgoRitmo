@@ -2,12 +2,9 @@ package com.aa.algoritmo.adapter.out.persistence;
 
 import com.aa.algoritmo.adapter.in.model.request.SalesRequest;
 import com.aa.algoritmo.adapter.out.persistence.entity.SalesEntity;
-import com.aa.algoritmo.adapter.out.persistence.repository.ProductRepository;
 import com.aa.algoritmo.adapter.out.persistence.repository.SalesRepository;
 import com.aa.algoritmo.ports.out.persistence.SalesPersistencePort;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,7 +20,7 @@ public class SalesPersistenceAdapter implements SalesPersistencePort {
 
     @Override
     public List<SalesEntity> findAllSales(Integer limit) {
-        return salesRepository.findAll();
+        return salesRepository.findAllLimited(limit);
     }
 
     @Override
