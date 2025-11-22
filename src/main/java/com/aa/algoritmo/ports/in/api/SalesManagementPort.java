@@ -33,7 +33,9 @@ public interface SalesManagementPort {
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    ResponseEntity<List<SalesResponse>> findAllSales();
+    ResponseEntity<List<SalesResponse>> findAllSales(
+            @RequestParam(required = false) Integer limit
+    );
 
     @ApiResponses(
             value = {
@@ -47,7 +49,7 @@ public interface SalesManagementPort {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    ResponseEntity<SalesResponse> updateSales(@PathVariable Integer id, @RequestBody SalesRequest SalesRequest);
+    ResponseEntity<SalesResponse> updateSales(@PathVariable Integer id, @RequestBody SalesRequest salesRequest);
 
     @ApiResponses(
             value = {

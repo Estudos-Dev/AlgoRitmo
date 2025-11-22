@@ -13,16 +13,17 @@ import java.util.List;
 
 @RestController
 public class SalesApiController implements SalesManagementPort {
-    private final SalesMapper salesMapper = Mappers.getMapper(SalesMapper.class);
+    private final SalesMapper salesMapper;
     private final SalesUseCase salesUseCase;
 
-    public SalesApiController(SalesUseCase salesUseCase) {
+    public SalesApiController(SalesMapper salesMapper, SalesUseCase salesUseCase) {
+        this.salesMapper = salesMapper;
         this.salesUseCase = salesUseCase;
     }
 
     @Override
-    public ResponseEntity<List<SalesResponse>> findAllSales() {
-        return ResponseEntity.ok(salesMapper.toResponseList(salesUseCase.findAllSales()));
+    public ResponseEntity<List<SalesResponse>> findAllSales(Integer limit) {
+        return ResponseEntity.ok(salesMapper.toResponseList(salesUseCase.findAllSales(limit)));
     }
 
     @Override

@@ -17,19 +17,19 @@ import java.util.List;
 @Setter
 public class SalesEntity {
 
-            @Id
-            @GeneratedValue(strategy = GenerationType.IDENTITY)
-            Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-            @ManyToOne
-            @JoinColumn(name = "seller_id", nullable = false)
-            SellerEntity seller;
+    @ManyToOne
+    @JoinColumn(name = "seller_id", nullable = false)
+    private SellerEntity seller;
 
-            @ManyToOne
-            @JoinColumn(name = "client_id", nullable = false)
-            ClientEntity client;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private ClientEntity client;
 
-            LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalesItemEntity> items;
