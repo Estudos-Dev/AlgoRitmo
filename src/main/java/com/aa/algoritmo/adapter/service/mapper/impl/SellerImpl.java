@@ -1,4 +1,4 @@
-package com.aa.algoritmo.domain.usecases.impl;
+package com.aa.algoritmo.adapter.service.mapper.impl;
 
 import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
 import com.aa.algoritmo.adapter.service.mapper.SellerMapper;

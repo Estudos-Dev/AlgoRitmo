@@ -5,6 +5,7 @@ import com.aa.algoritmo.adapter.out.persistence.entity.ProductEntity;
 import com.aa.algoritmo.adapter.out.persistence.repository.ProductRepository;
 import com.aa.algoritmo.adapter.service.mapper.ProductMapper;
 import com.aa.algoritmo.ports.out.persistence.ProductPersistencePort;
+import jakarta.persistence.EntityNotFoundException;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
@@ -47,5 +48,11 @@ public class ProductPersistenceAdapter implements ProductPersistencePort {
                 .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
 
         productRepository.delete(entity);
+    }
+
+    @Override
+    public ProductEntity findById(Integer id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado com id: " + id));
     }
 }

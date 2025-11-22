@@ -30,4 +30,3 @@ public interface ClientMapper {
 
     List<ClientResponse> toResponseList(List<Client> clientList);
 }
-
