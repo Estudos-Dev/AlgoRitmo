@@ -26,8 +26,8 @@ public class SellerApiController implements SellerManagementPort {
         return ResponseEntity.ok(sellerMapper.toResponse(sellerUseCase.createUser(sellerRequest)));
     }
 
-    public ResponseEntity<List<SellerResponse>> findAllSellers() {
-        return ResponseEntity.ok(sellerMapper.toResponseList(sellerUseCase.findAllSellers()));
+    public ResponseEntity<List<SellerResponse>> findAllSellers(Integer limit) {
+        return ResponseEntity.ok(sellerMapper.toResponseList(sellerUseCase.findAllSellers(limit)));
     }
 
     @Override

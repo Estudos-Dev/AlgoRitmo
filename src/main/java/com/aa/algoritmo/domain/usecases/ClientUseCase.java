@@ -6,7 +6,7 @@ import com.aa.algoritmo.domain.model.client.Client;
 import java.util.List;
 
 public interface ClientUseCase {
-    List<Client> findAllClients();
+    List<Client> findAllClients(Integer limit);
     Client createClient(ClientRequest clientRequest);
     Client updateClient(Integer id, ClientRequest clientRequest);
     void deleteClient(Integer id);

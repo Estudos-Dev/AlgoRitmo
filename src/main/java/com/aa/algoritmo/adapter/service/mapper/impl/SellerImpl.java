@@ -20,8 +20,8 @@ public class SellerImpl implements SellerUseCase {
     }
 
     @Override
-    public List<Seller> findAllSellers() {
-        return sellerMapper.toModelList(sellerPersistencePort.findAllSellers());
+    public List<Seller> findAllSellers(Integer limit) {
+        return sellerMapper.toModelList(sellerPersistencePort.findAllSellers(limit));
     }
 
     @Override

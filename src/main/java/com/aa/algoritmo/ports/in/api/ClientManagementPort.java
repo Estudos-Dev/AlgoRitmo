@@ -35,7 +35,7 @@ public interface ClientManagementPort {
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    ResponseEntity<List<ClientResponse>> findAllClients();
+    ResponseEntity<List<ClientResponse>> findAllClients(@RequestParam(required = false) Integer limit);
 
     @ApiResponses(
             value = {

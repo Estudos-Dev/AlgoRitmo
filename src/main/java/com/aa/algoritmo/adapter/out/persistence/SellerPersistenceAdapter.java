@@ -1,12 +1,10 @@
 package com.aa.algoritmo.adapter.out.persistence;
 
 import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
-import com.aa.algoritmo.adapter.out.persistence.entity.ProductEntity;
 import com.aa.algoritmo.adapter.out.persistence.entity.SellerEntity;
 import com.aa.algoritmo.adapter.out.persistence.repository.SellerRepository;
 import com.aa.algoritmo.adapter.service.mapper.SellerMapper;
 import com.aa.algoritmo.ports.out.persistence.SellerPersistencePort;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
@@ -23,8 +21,8 @@ public class SellerPersistenceAdapter implements SellerPersistencePort {
         this.sellerMapper = sellerMapper;
     }
 
-    public List<SellerEntity> findAllSellers() {
-        return sellerRepository.findAll();
+    public List<SellerEntity> findAllSellers(Integer limit) {
+        return sellerRepository.findAllLimited(limit);
     }
 
     @Override

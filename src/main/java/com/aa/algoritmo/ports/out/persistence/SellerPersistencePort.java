@@ -6,7 +6,7 @@ import com.aa.algoritmo.adapter.out.persistence.entity.SellerEntity;
 import java.util.List;
 
 public interface SellerPersistencePort {
-    List<SellerEntity> findAllSellers();
+    List<SellerEntity> findAllSellers(Integer limit);
 
     SellerEntity findById(int id);
 

@@ -21,8 +21,8 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     }
 
     @Override
-    public List<ClientEntity> findAllClients() {
-        return clientRepository.findAll();
+    public List<ClientEntity> findAllClients(Integer limit) {
+        return clientRepository.findAllLimited(limit);
     }
 
     @Override

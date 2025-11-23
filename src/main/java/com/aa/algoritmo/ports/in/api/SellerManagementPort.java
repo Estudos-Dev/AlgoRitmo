@@ -1,8 +1,6 @@
 package com.aa.algoritmo.ports.in.api;
 
-import com.aa.algoritmo.adapter.in.model.request.ClientRequest;
 import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
-import com.aa.algoritmo.adapter.in.model.response.ClientResponse;
 import com.aa.algoritmo.adapter.in.model.response.SellerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -31,7 +29,7 @@ public interface SellerManagementPort {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     ResponseEntity<List<SellerResponse>> findAllSellers(
-
+            @RequestParam(required = false) Integer limit
     );
 
     @Operation(summary = "Cadastro de vendedor")

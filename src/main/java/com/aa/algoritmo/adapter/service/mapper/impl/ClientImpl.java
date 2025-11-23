@@ -20,8 +20,8 @@ public class ClientImpl implements ClientUseCase {
     }
 
     @Override
-    public List<Client> findAllClients() {
-        return clientMapper.toModelList(clientPersistencePort.findAllClients());
+    public List<Client> findAllClients(Integer limit) {
+        return clientMapper.toModelList(clientPersistencePort.findAllClients(limit));
     }
 
     @Override

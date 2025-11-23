@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SellerUseCase {
 
-    List<Seller> findAllSellers();
+    List<Seller> findAllSellers(Integer limit);
 
     Seller findById(int id);
 

@@ -23,8 +23,8 @@ public class ClientApiController implements ClientManagementPort {
     }
 
     @Override
-    public ResponseEntity<List<ClientResponse>> findAllClients() {
-        return ResponseEntity.ok(clientMapper.toResponseList(clientUseCase.findAllClients()));
+    public ResponseEntity<List<ClientResponse>> findAllClients(Integer limit) {
+        return ResponseEntity.ok(clientMapper.toResponseList(clientUseCase.findAllClients(limit)));
     }
 
     @Override

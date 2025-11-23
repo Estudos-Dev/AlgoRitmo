@@ -6,7 +6,7 @@ import com.aa.algoritmo.adapter.out.persistence.entity.ClientEntity;
 import java.util.List;
 
 public interface ClientPersistencePort {
-    List<ClientEntity> findAllClients();
+    List<ClientEntity> findAllClients(Integer limit);
     ClientEntity createClient(ClientRequest productRequest);
     ClientEntity updateClient(Integer id, ClientRequest productRequest);
     void deleteClient(Integer id);
