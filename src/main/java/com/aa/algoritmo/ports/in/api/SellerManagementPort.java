@@ -52,8 +52,7 @@ public interface SellerManagementPort {
             })
     @DeleteMapping(
             value = "/delete/{id}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
+            produces = MediaType.APPLICATION_JSON_VALUE)
     void deleteUserById(@PathVariable int id);
 
     @Operation(summary = "Busca por id")
