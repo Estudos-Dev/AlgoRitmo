@@ -44,17 +44,17 @@ public interface SellerManagementPort {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<SellerResponse> createUser(@RequestBody SellerRequest sellerRequest);
 
-    @Operation(summary = "Cadastro de vendedor")
+    @Operation(summary = "Apagar de vendedor")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "201", description = "Vendedor excluído com sucesso"),
                     @ApiResponse(responseCode = "500", description = "Erro ao excluir vendedor")
             })
     @PostMapping(
-            value = "/delete",
+            value = "/delete/{id}",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    void deleteUserById(@RequestBody int id);
+    void deleteUserById(@PathVariable int id);
 
     @Operation(summary = "Busca por id")
     @ApiResponses(
