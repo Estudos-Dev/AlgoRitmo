@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:postgresql://switchyard.proxy.rlwy.net:19988/sales_db
-    username: sales_manager
-    password: RwM#FDrwNk!1ASzJuwTd
+    url: jdbc:postgresql://localhost:5432/algoritmo
+    username: ToninhoEArthur
+    password: ASenha
     driver-class-name: org.postgresql.Driver
 
   jpa:
