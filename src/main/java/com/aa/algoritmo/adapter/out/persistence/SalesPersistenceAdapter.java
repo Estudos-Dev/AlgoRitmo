@@ -3,9 +3,11 @@ package com.aa.algoritmo.adapter.out.persistence;
 import com.aa.algoritmo.adapter.in.model.SaleItemProjection;
 import com.aa.algoritmo.adapter.in.model.SaleProjection;
 import com.aa.algoritmo.adapter.in.model.request.SalesRequest;
+import com.aa.algoritmo.adapter.out.persistence.entity.ProductEntity;
 import com.aa.algoritmo.adapter.out.persistence.entity.SalesEntity;
 import com.aa.algoritmo.adapter.out.persistence.repository.ItemRepository;
 import com.aa.algoritmo.adapter.out.persistence.repository.SalesRepository;
+import com.aa.algoritmo.adapter.service.mapper.SalesMapper;
 import com.aa.algoritmo.domain.model.Sales;
 import com.aa.algoritmo.domain.model.SalesItem;
 import com.aa.algoritmo.ports.out.persistence.SalesPersistencePort;
@@ -23,10 +25,12 @@ public class SalesPersistenceAdapter implements SalesPersistencePort {
 
     private final SalesRepository salesRepository;
     private final ItemRepository itemRepository;
+    private final SalesMapper salesMapper;
 
-    public SalesPersistenceAdapter(SalesRepository salesRepository, ItemRepository itemRepository) {
+    public SalesPersistenceAdapter(SalesRepository salesRepository, ItemRepository itemRepository, SalesMapper salesMapper) {
         this.salesRepository = salesRepository;
         this.itemRepository = itemRepository;
+        this.salesMapper = salesMapper;
     }
 
     @Override
@@ -73,8 +77,10 @@ public class SalesPersistenceAdapter implements SalesPersistencePort {
     @Override
     @Transactional
     public SalesEntity updateSale(Integer id, SalesRequest salesRequest) {
-        return salesRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Venda não encontrada com id: " + id));
+        SalesEntity entity = salesRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        salesMapper.updateEntityFromRequest(salesRequest, entity);
+        return salesRepository.save(entity);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class SellerImpl implements SellerUseCase {
 
     @Override
     public Seller updateSeller(Integer id, SellerRequest sellerRequest) {
-        return sellerMapper.toModel(sellerPersistencePort.updateSale(id, sellerRequest));
+        return sellerMapper.toModel(sellerPersistencePort.updateSeller(id, sellerRequest));
 
     }
 

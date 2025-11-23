@@ -37,7 +37,6 @@ public class ProductPersistenceAdapter implements ProductPersistencePort {
     public ProductEntity  updateProduct(Integer id, ProductRequest productRequest) {
         ProductEntity entity = productRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
-        // Atualiza a entidade existente usando @MappingTarget
         productMapper.updateEntityFromRequest(productRequest, entity);
         return productRepository.save(entity);
     }

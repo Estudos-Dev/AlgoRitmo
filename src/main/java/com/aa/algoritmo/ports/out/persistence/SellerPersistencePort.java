@@ -14,5 +14,5 @@ public interface SellerPersistencePort {
 
     void deleteUserById(int id);
 
-    SellerEntity updateSale(Integer id, SellerRequest sellerRequest);
+    SellerEntity updateSeller(Integer id, SellerRequest sellerRequest);
 }

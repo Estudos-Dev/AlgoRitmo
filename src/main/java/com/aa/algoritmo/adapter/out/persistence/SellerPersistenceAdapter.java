@@ -1,6 +1,7 @@
 package com.aa.algoritmo.adapter.out.persistence;
 
 import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
+import com.aa.algoritmo.adapter.out.persistence.entity.ProductEntity;
 import com.aa.algoritmo.adapter.out.persistence.entity.SellerEntity;
 import com.aa.algoritmo.adapter.out.persistence.repository.SellerRepository;
 import com.aa.algoritmo.adapter.service.mapper.SellerMapper;
@@ -41,9 +42,11 @@ public class SellerPersistenceAdapter implements SellerPersistencePort {
 
     @Override
     @Transactional
-    public SellerEntity updateSale(Integer id, SellerRequest sellerRequest) {
-        return sellerRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Vendendor não encontrada com id: " + id));
+    public SellerEntity updateSeller(Integer id, SellerRequest sellerRequest) {
+        SellerEntity entity = sellerRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        sellerMapper.updateEntityFromRequest(sellerRequest, entity);
+        return sellerRepository.save(entity);
     }
 
     @Override
