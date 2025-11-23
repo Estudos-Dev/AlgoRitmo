@@ -5,7 +5,6 @@ import com.aa.algoritmo.adapter.in.model.response.SalesResponse;
 import com.aa.algoritmo.adapter.service.mapper.SalesMapper;
 import com.aa.algoritmo.domain.usecases.SalesUseCase;
 import com.aa.algoritmo.ports.in.api.SalesManagementPort;
-import org.mapstruct.factory.Mappers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

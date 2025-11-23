@@ -31,7 +31,7 @@ public interface SalesMapper {
     @Mapping(target = "total", expression = "java(calculateTotal(salesEntity.getItems()))")
     Sales toModel(SalesEntity salesEntity);
 
-    List<Sales> toModelList(List<SalesEntity> salesEntity);
+    List<Sales> toModelList(List<Sales> Sales);
 
     SalesResponse toResponse(Sales sales);
 

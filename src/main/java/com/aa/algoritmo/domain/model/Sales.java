@@ -12,5 +12,5 @@ public record Sales (
         String clientName,
         LocalDateTime date,
         List<SalesItem> items,
-        BigDecimal total) {
-}
+        BigDecimal total
+) {}

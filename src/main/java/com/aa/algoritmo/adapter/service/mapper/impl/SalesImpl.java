@@ -9,8 +9,10 @@ import com.aa.algoritmo.ports.out.persistence.ClientPersistencePort;
 import com.aa.algoritmo.ports.out.persistence.ProductPersistencePort;
 import com.aa.algoritmo.ports.out.persistence.SalesPersistencePort;
 import com.aa.algoritmo.ports.out.persistence.SellerPersistencePort;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,10 +33,11 @@ public class SalesImpl implements SalesUseCase {
 
     @Override
     public List<Sales> findAllSales(Integer limit) {
-        return salesMapper.toModelList(salesPersistencePort.findAllSales(limit));
+        return salesPersistencePort.findAllSales(limit);
     }
 
     @Override
+    @Transactional
     public Sales createSales(SalesRequest salesRequest) {
         SalesEntity sale = salesMapper.requestToEntity(salesRequest);
 
@@ -43,7 +46,7 @@ public class SalesImpl implements SalesUseCase {
 
         sale.setSeller(seller);
         sale.setClient(client);
-
+        sale.setCreatedAt(LocalDateTime.now());
         List<SalesItemEntity> items = salesRequest.items().stream().map(itemReq -> {
             ProductEntity product = productPersistencePort.findById(itemReq.productId());
 
