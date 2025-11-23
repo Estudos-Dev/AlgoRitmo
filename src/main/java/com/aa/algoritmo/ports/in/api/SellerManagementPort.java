@@ -50,7 +50,7 @@ public interface SellerManagementPort {
                     @ApiResponse(responseCode = "201", description = "Vendedor excluído com sucesso"),
                     @ApiResponse(responseCode = "500", description = "Erro ao excluir vendedor")
             })
-    @PostMapping(
+    @DeleteMapping(
             value = "/delete/{id}",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
