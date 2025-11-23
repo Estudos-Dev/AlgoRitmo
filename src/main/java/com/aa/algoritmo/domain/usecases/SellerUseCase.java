@@ -14,4 +14,6 @@ public interface SellerUseCase {
     Seller createUser(SellerRequest sellerRequest);
 
     void deleteUserById(int id);
+
+    Seller updateSeller(Integer id, SellerRequest sellerRequest);
 }

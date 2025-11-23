@@ -35,6 +35,12 @@ public class SellerImpl implements SellerUseCase {
     }
 
     @Override
+    public Seller updateSeller(Integer id, SellerRequest sellerRequest) {
+        return sellerMapper.toModel(sellerPersistencePort.updateSale(id, sellerRequest));
+
+    }
+
+    @Override
     public Seller findById(int id) {
         return sellerMapper.toModel(sellerPersistencePort.findById(id));
     }

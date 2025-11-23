@@ -1,6 +1,8 @@
 package com.aa.algoritmo.ports.in.api;
 
+import com.aa.algoritmo.adapter.in.model.request.ClientRequest;
 import com.aa.algoritmo.adapter.in.model.request.SellerRequest;
+import com.aa.algoritmo.adapter.in.model.response.ClientResponse;
 import com.aa.algoritmo.adapter.in.model.response.SellerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -66,4 +68,18 @@ public interface SellerManagementPort {
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<SellerResponse> getUserById(@PathVariable int id);
+
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Vendedor atualizado com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Vendendor não encontrado"),
+                    @ApiResponse(responseCode = "500", description = "Erro ao atualizar o Vendedor")
+            }
+    )
+    @PutMapping(
+            value = "/update/{id}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    ResponseEntity<SellerResponse> updateClient(@PathVariable Integer id, @RequestBody SellerRequest sellerRequest);
 }

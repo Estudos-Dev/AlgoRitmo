@@ -5,6 +5,8 @@ import com.aa.algoritmo.adapter.out.persistence.entity.SellerEntity;
 import com.aa.algoritmo.adapter.out.persistence.repository.SellerRepository;
 import com.aa.algoritmo.adapter.service.mapper.SellerMapper;
 import com.aa.algoritmo.ports.out.persistence.SellerPersistencePort;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
@@ -32,8 +34,16 @@ public class SellerPersistenceAdapter implements SellerPersistencePort {
     }
 
     @Override
+    @Transactional
     public void deleteUserById(int id) {
         sellerRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public SellerEntity updateSale(Integer id, SellerRequest sellerRequest) {
+        return sellerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Vendendor não encontrada com id: " + id));
     }
 
     @Override

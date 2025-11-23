@@ -49,4 +49,10 @@ public class SellerApiController implements SellerManagementPort {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @Override
+    public ResponseEntity<SellerResponse> updateClient(Integer id, SellerRequest sellerRequest) {
+        return ResponseEntity.ok(sellerMapper.toResponse(sellerUseCase.updateSeller(id, sellerRequest)));
+
+    }
 }
