@@ -4,7 +4,7 @@ ENV TZ="America/Sao_Paulo"
 
 RUN mkdir /app
 
-COPY /build/libs*.jar /app/algoritmo.jar
+COPY /build/libs/*.jar /app/algoritmo.jar
 
 EXPOSE 8080
 
