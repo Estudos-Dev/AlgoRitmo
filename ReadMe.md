@@ -21,7 +21,7 @@ Spring Data JPA
 
 PostgreSQL 14+
 
-Maven
+Gradle
 
 🚀 Como Rodar
 Pré-requisitos
